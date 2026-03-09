@@ -26,7 +26,7 @@
 ## ⚡ Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USER/paver.git
+git clone https://github.com/calrunsIT/paverv2.git
 cd paver
 cp .env.example .env
 # Edit .env with your API keys (see Configuration below)

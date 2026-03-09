@@ -13,7 +13,7 @@ Paver scans geographic areas via the Google Places API, identifies businesses wi
 ### Clone and configure
 
 ```bash
-git clone https://github.com/YOUR_USER/paver.git
+git clone https://github.com/calrunsIT/paverv2.git
 cd paver
 cp .env.example .env
 ```
