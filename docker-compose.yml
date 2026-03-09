@@ -1,0 +1,43 @@
+services:
+  paver-backend:
+    build: ./backend
+    container_name: paver-backend
+    ports:
+      - "4501:4500"
+    expose:
+      - "4500"
+    volumes:
+      - ./data:/data
+      - ./data/previews:/app/previews
+    environment:
+      - PORT=4500
+      - DATABASE_URL=file:/data/paver.db
+      - GOOGLE_PLACES_API_KEY=${GOOGLE_PLACES_API_KEY}
+      - PAVER_API_KEY=${PAVER_API_KEY}
+      - CF_API_TOKEN=${CF_API_TOKEN}
+      - CF_ACCOUNT_ID=${CF_ACCOUNT_ID}
+      - CF_PROJECT_NAME=${CF_PROJECT_NAME:-paver}
+      - COMPANY_NAME=${COMPANY_NAME:-Paver}
+      - COMPANY_PHONE=${COMPANY_PHONE:-(555) 000-0000}
+      - COMPANY_EMAIL=${COMPANY_EMAIL:-hello@example.com}
+      - COMPANY_WEBSITE=${COMPANY_WEBSITE:-}
+      - COMPANY_BOOKING_URL=${COMPANY_BOOKING_URL:-}
+      - SITE_PRICE=${SITE_PRICE:-$499}
+      - SITE_DESCRIPTION=${SITE_DESCRIPTION:-One-time setup • Includes 1 year of hosting • Custom design}
+    restart: unless-stopped
+
+  paver-dashboard:
+    build: ./dashboard
+    container_name: paver-dashboard
+    ports:
+      - "4502:3001"
+    volumes:
+      - ./data:/data
+    environment:
+      - PORT=3001
+      - DB_PATH=/data/paver.db
+      - BACKEND_URL=http://paver-backend:4500
+      - PAVER_API_KEY=${PAVER_API_KEY}
+    depends_on:
+      - paver-backend
+    restart: unless-stopped

@@ -1,0 +1,87 @@
+<!--
+  Initial outreach email template.
+
+  These templates are NOT automatically sent — they're here as starting points
+  for your own email outreach. Customize the branding, contact info, pricing,
+  and CAN-SPAM footer before use.
+
+  Available template variables:
+    {{BUSINESS_NAME}}        - Target business name
+    {{BUSINESS_OWNER_NAME}}  - Owner name (if known)
+    {{BUSINESS_ADDRESS}}     - Business street address
+    {{PREVIEW_URL}}          - URL to the generated preview site
+    {{UNSUBSCRIBE_URL}}      - Unsubscribe link (you must implement this)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Built {{BUSINESS_NAME}} a Website Preview</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; background: #ffffff;">
+        <!-- Header — customize colors and company name -->
+        <div style="background: linear-gradient(135deg, #3b82f6, #6366f1); padding: 30px 20px; text-align: center;">
+            <h1 style="margin: 0; color: white; font-size: 28px; font-weight: bold;">Your Company</h1>
+            <p style="margin: 10px 0 0; color: #e0e7ff; font-size: 16px;">Professional Websites for Local Businesses</p>
+        </div>
+
+        <div style="padding: 40px 30px;">
+            <h2 style="color: #3b82f6; font-size: 24px; margin-bottom: 20px;">Hi {{BUSINESS_OWNER_NAME}},</h2>
+
+            <p style="font-size: 16px; margin-bottom: 20px;">
+                I noticed that <strong>{{BUSINESS_NAME}}</strong> doesn't currently have a professional website, so I took the liberty of building you a preview to show what one could look like for your business.
+            </p>
+
+            <div style="background: #f8f9fa; border-left: 4px solid #3b82f6; padding: 20px; margin: 25px 0; border-radius: 5px;">
+                <h3 style="margin: 0 0 10px; color: #3b82f6;">Your Preview Website is Ready!</h3>
+                <p style="margin: 0; font-size: 16px;"><strong>{{BUSINESS_NAME}}</strong> located at {{BUSINESS_ADDRESS}}</p>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{PREVIEW_URL}}" style="display: inline-block; background: #3b82f6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    View Your Preview Website
+                </a>
+            </div>
+
+            <p style="font-size: 16px; margin-bottom: 20px;">This preview includes:</p>
+
+            <ul style="font-size: 16px; margin-bottom: 25px; padding-left: 20px;">
+                <li>Professional design tailored to your business</li>
+                <li>Your business information and contact details</li>
+                <li>Mobile-responsive layout</li>
+                <li>Google Maps integration</li>
+                <li>Customer review display</li>
+            </ul>
+
+            <p style="font-size: 16px; margin-bottom: 25px;">
+                If you like what you see and want to make this your official website, just reply to this email or give me a call. I can have it live within 48 hours!
+            </p>
+
+            <p style="font-size: 14px; color: #666; margin-top: 30px; font-style: italic;">
+                P.S. Even if you're not interested right now, feel free to keep the preview link as a reference.
+            </p>
+        </div>
+
+        <!-- Footer — update with your real business info for CAN-SPAM compliance -->
+        <div style="background: #f8f9fa; padding: 30px 20px; border-top: 1px solid #e9ecef;">
+            <div style="text-align: center; font-size: 14px; color: #666; margin-bottom: 15px;">
+                <strong>Your Company</strong><br>
+                Professional Website Design &amp; Development
+            </div>
+            <div style="border-top: 1px solid #e9ecef; padding-top: 15px; text-align: center; font-size: 12px; color: #999;">
+                <p style="margin: 0 0 10px;">
+                    <!-- CAN-SPAM: You MUST include your physical mailing address -->
+                    <strong>Your Company Name</strong><br>
+                    123 Your Street<br>
+                    Your City, ST 00000
+                </p>
+                <p style="margin: 0;">
+                    <a href="{{UNSUBSCRIBE_URL}}" style="color: #666; text-decoration: underline;">Click here to unsubscribe</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Business {
+  id           String  @id @default(cuid())
+  placeId      String  @unique
+  name         String
+  address      String
+  city         String?
+  county       String?
+  state        String?
+  zip          String?
+  phone        String?
+  email        String?
+  facebook     String?
+  instagram    String?
+  websiteUrl   String?
+  googleMapsUrl String?
+  rating       Float?
+  ratingCount  Int?
+  types        String? // JSON string of Google place types array
+  hours        String? // JSON string of opening hours object
+  photos       String? // JSON string of photo references array
+  reviews      String? // JSON string of top reviews array
+  hasWebsite   Boolean @default(false)
+  websiteQuality String @default("none") // none/facebook_only/poor/decent
+  status       String  @default("discovered") // discovered/preview_generated/approved/emailed/responded/converted/skipped
+  previewUrl   String?
+  liveUrl      String?
+  discoveredAt DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  outreachSentAt DateTime?
+  notes        String?
+
+  // Relations
+  outreachEmails OutreachEmail[]
+  outreachNotes  OutreachNote[]
+
+  @@map("businesses")
+}
+
+model Scan {
+  id             String   @id @default(cuid())
+  area           String   // "Bartow County, GA"
+  centerLat      Float
+  centerLng      Float
+  radiusMeters   Int
+  businessCount  Int      @default(0)
+  noWebsiteCount Int      @default(0)
+  scannedAt      DateTime @default(now())
+
+  @@map("scans")
+}
+
+model OutreachEmail {
+  id           String    @id @default(cuid())
+  businessId   String
+  fromEmail    String
+  toEmail      String
+  subject      String
+  templateUsed String
+  sentAt       DateTime  @default(now())
+  openedAt     DateTime?
+  clickedAt    DateTime?
+  status       String    @default("queued") // queued/sent/opened/clicked/replied/bounced
+
+  // Relations
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("outreach_emails")
+}
+
+model OutreachNote {
+  id         String   @id @default(cuid())
+  businessId String
+  type       String
+  note       String
+  outcome    String?
+  createdAt  DateTime @default(now())
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("outreach_notes")
+}
